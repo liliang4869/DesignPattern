@@ -33,8 +33,12 @@ public class Human implements Creature{
 	}
 	@Override
 	public void printDesc() {
-		System.out.print("A human.");
+		System.out.print("A human.Nothing to show");
 		
+	}
+	@Override
+	public String toString() {
+		return "Human [name=" + name + ", skinColor=" + skinColor + ", sex=" + sex + "]";
 	}
 	
 	

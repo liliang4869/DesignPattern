@@ -2,10 +2,10 @@ package com.lil4869.designpattern.builder;
 
 import com.lil4869.designpattern.entity.creature.Human;
 
-public class PersonDirector {
+public class HumanDirector {
 	private AbsBuilder builder;
 
-	public PersonDirector(AbsBuilder builder) {
+	public HumanDirector(AbsBuilder builder) {
 		this.builder = builder;
 	}
 	
@@ -13,6 +13,6 @@ public class PersonDirector {
 		builder.buildSex();
 		builder.buildSkinColor();
 		builder.buildName(name);
-		return builder.getPerson();
+		return builder.getHuman();
 	}
 }

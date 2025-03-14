@@ -11,6 +11,7 @@ public class PersonSingleton {
 			synchronized(PersonSingleton.class){
 				if(instance ==null) {
 					instance=new Human("Alice","white","female");
+					System.out.print("***Singleton***\n");
 				}
 			}
 		}
