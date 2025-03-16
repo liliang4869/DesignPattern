@@ -3,6 +3,7 @@ package com.lil4869.designpattern;
 
 import com.lil4869.designpattern.adapter.HumanInfoAdapter;
 import com.lil4869.designpattern.bridge.Doctor;
+import com.lil4869.designpattern.bridge.Student;
 import com.lil4869.designpattern.bridge.Teacher;
 import com.lil4869.designpattern.builder.BlackMaleBuilder;
 import com.lil4869.designpattern.builder.HumanDirector;
@@ -11,6 +12,7 @@ import com.lil4869.designpattern.decorator.EnglishTeacher;
 import com.lil4869.designpattern.entity.bed.Bed;
 import com.lil4869.designpattern.entity.creature.Human;
 import com.lil4869.designpattern.entity.sitthing.SitThing;
+import com.lil4869.designpattern.facade.SchoolClass;
 import com.lil4869.designpattern.factory.SingleBedBenchFactory;
 import com.lil4869.designpattern.singleton.PersonSingleton;
 
@@ -31,6 +33,10 @@ public class Demo {
 	
 	//裝飾
 	decorateEnglishTeacher(teacher);
+	
+	//外觀
+	Student student=new Student();
+	facadeClassDemo(teacher,student);
 	}
 	
 	//工厂模式
@@ -88,6 +94,12 @@ public class Demo {
 		EnglishTeacher englishTeacher=new EnglishTeacher(teacher);
 		englishTeacher.printDesc();
 		return englishTeacher;
+	}
+	
+	public static void facadeClassDemo(Teacher teacher,Student student) {
+		SchoolClass sc=new SchoolClass(teacher,student);
+		sc.startClass();
+		sc.finishClass();
 	}
 
 }

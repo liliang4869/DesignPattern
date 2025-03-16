@@ -21,4 +21,11 @@ public class Teacher extends Worker{
 		this.subject = subject;
 	}
 
+	public void startClass() {
+		System.out.print("Teacher:class begin.\n");
+	}
+	
+	public void finishClass() {
+		System.out.print("Teacher:Ok,class is over.Bye everybody.\n");
+	}
 }
