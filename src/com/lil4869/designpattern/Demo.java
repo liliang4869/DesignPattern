@@ -7,6 +7,7 @@ import com.lil4869.designpattern.bridge.Teacher;
 import com.lil4869.designpattern.builder.BlackMaleBuilder;
 import com.lil4869.designpattern.builder.HumanDirector;
 import com.lil4869.designpattern.composite.Headmaster;
+import com.lil4869.designpattern.decorator.EnglishTeacher;
 import com.lil4869.designpattern.entity.bed.Bed;
 import com.lil4869.designpattern.entity.creature.Human;
 import com.lil4869.designpattern.entity.sitthing.SitThing;
@@ -24,9 +25,12 @@ public class Demo {
 	testAdapter(singleton);
 	
 	//桥接
-	generateTeacherByBridge(singleton);
+	Teacher teacher =generateTeacherByBridge(singleton);
 	//組合
 	headmasterComposite();
+	
+	//裝飾
+	decorateEnglishTeacher(teacher);
 	}
 	
 	//工厂模式
@@ -76,6 +80,14 @@ public class Demo {
 		hm.addTeacher(teacherWang);
 		hm.addTeacher(teacherTrump);
 		System.out.print(hm.getOccupation());
+	}
+	
+	//裝飾模式
+	public static EnglishTeacher decorateEnglishTeacher(Teacher teacher) {
+		System.out.print("***Decorator***\n");
+		EnglishTeacher englishTeacher=new EnglishTeacher(teacher);
+		englishTeacher.printDesc();
+		return englishTeacher;
 	}
 
 }

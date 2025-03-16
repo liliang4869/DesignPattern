@@ -35,6 +35,6 @@ private List<Teacher> teacherList=new ArrayList<Teacher>();
 
 	@Override
 	public String getOccupation() {
-		return String.format("A headmaster who leads %d teacher(s)",getTeacherCount());
+		return String.format("A headmaster who leads %d teacher(s)\n",getTeacherCount());
 	}
 }
