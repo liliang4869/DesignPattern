@@ -17,7 +17,7 @@ public class HumanInfoAdapter implements HumanInfo{
 		String info="Not inited";
 		if(human !=null) {
 			human.printDesc();
-			info="\n***Adapter***\n full info:\n  "+human.toString()+"\n";}
+			info=" full info:\n  "+human.toString()+"\n";}
 		System.out.print(info);
 		
 	}

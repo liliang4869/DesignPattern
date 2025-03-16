@@ -3,8 +3,10 @@ package com.lil4869.designpattern;
 
 import com.lil4869.designpattern.adapter.HumanInfoAdapter;
 import com.lil4869.designpattern.bridge.Doctor;
+import com.lil4869.designpattern.bridge.Teacher;
 import com.lil4869.designpattern.builder.BlackMaleBuilder;
 import com.lil4869.designpattern.builder.HumanDirector;
+import com.lil4869.designpattern.composite.Headmaster;
 import com.lil4869.designpattern.entity.bed.Bed;
 import com.lil4869.designpattern.entity.creature.Human;
 import com.lil4869.designpattern.entity.sitthing.SitThing;
@@ -15,14 +17,16 @@ public class Demo {
 	public static void main(String[] args) {
 		//testFactory();
 		//建造者
-	Human human=	testBuilder();
+	Human human=	generateHumanByBuilder( "Mark");
 	testAdapter(human);
 	//单例
 	Human singleton=PersonSingleton.getInstance();
 	testAdapter(singleton);
 	
 	//桥接
-	testBridge(singleton);
+	generateTeacherByBridge(singleton);
+	//組合
+	headmasterComposite();
 	}
 	
 	//工厂模式
@@ -35,24 +39,43 @@ public class Demo {
 	}
 	
 	//建造者模式
-	public static Human testBuilder() {
+	public static Human generateHumanByBuilder(String name) {
+	System.out.print("***Builder***\n");
 	BlackMaleBuilder bmb=new BlackMaleBuilder();
 	HumanDirector humanDirector=new HumanDirector(bmb);
-	Human person=humanDirector.buildTargetPerson("Mark");
-	System.out.print("***Builder***\n");
+	Human person=humanDirector.buildTargetPerson(name);
+
 	return person;
 	}
 	
 	//适配器模式
 	public static void testAdapter(Human person) {
+		System.out.print("***Adapter***\n");
 		HumanInfoAdapter adapter=new HumanInfoAdapter(person);
 		adapter.showComplete();
 	}
 	
-	public static void testBridge(Human human) {
-		Doctor doctor=new Doctor(human);
-		doctor.setSalary(20000);
-		doctor.getHuman().printDesc();
+	//橋接
+	public static Teacher generateTeacherByBridge(Human human) {
+		System.out.print("***Bridge***\n");
+		Teacher teacher=new Teacher(human);
+		teacher.setSalary(20000);
+		teacher.getHuman().printDesc();
+		return teacher;
+	}
+	
+	//組合
+	public static void headmasterComposite() {
+		Human humanTrump=generateHumanByBuilder("Teacher Trump");
+		Teacher teacherTrump=generateTeacherByBridge(humanTrump);
+		Human humanWang=generateHumanByBuilder("Teacher Wang");
+		Teacher teacherWang=generateTeacherByBridge(humanWang);
+		Human humanRong=generateHumanByBuilder("Headmaster Rong");
+		Headmaster hm=new Headmaster(humanRong);
+		hm.setSalary(35000);
+		hm.addTeacher(teacherWang);
+		hm.addTeacher(teacherTrump);
+		System.out.print(hm.getOccupation());
 	}
 
 }
