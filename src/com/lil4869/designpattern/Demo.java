@@ -15,6 +15,7 @@ import com.lil4869.designpattern.entity.sitthing.SitThing;
 import com.lil4869.designpattern.facade.SchoolClass;
 import com.lil4869.designpattern.factory.SingleBedBenchFactory;
 import com.lil4869.designpattern.flyweight.StudentFactory;
+import com.lil4869.designpattern.proxy.ProxyStudent;
 import com.lil4869.designpattern.singleton.PersonSingleton;
 
 public class Demo {
@@ -40,6 +41,9 @@ public class Demo {
 	facadeClassDemo(teacher,student);
 	//享元
 	flyweight();
+	
+	//代理
+	proxy();
 	}
 	
 	//工厂模式
@@ -117,6 +121,13 @@ public class Demo {
 			Student stu=sf.getStudent(String.valueOf(intId));
 			System.out.printf("get student %s from flyweight factory\n",stu.getId());
 		}
+	}
+	
+	//代理
+	public static void proxy() {
+		System.out.print("\n***Proxy***\n");
+		ProxyStudent ps=new ProxyStudent();
+		ps.printDesc();
 	}
 
 }
