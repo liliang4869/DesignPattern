@@ -18,6 +18,7 @@ import com.lil4869.designpattern.flyweight.StudentFactory;
 import com.lil4869.designpattern.proxy.ProxyStudent;
 import com.lil4869.designpattern.singleton.PersonSingleton;
 import com.lil4869.designpattern.template.DayOfTeacher;
+import com.lil4869.designpattern.chainofresponsibility.*;
 
 public class Demo {
 	public static void main(String[] args) {
@@ -48,6 +49,9 @@ public class Demo {
 	
 	//模板
 	templatePattern();
+	
+	//责任链
+	touchChain();
 	}
 	
 	//工厂模式
@@ -141,4 +145,16 @@ public class Demo {
 		dft.startADay();
 	}
 
+	public static void touchChain() {
+		System.out.print("\n***Chain of responsibility***\n");
+		TouchEventHandler activity=new Activity();
+		TouchEventHandler window=new Window();
+		TouchEventHandler viewGroup=new ViewGroup();
+		TouchEventHandler view=new View();
+		activity.setNextHandler(window);
+		window.setNextHandler(viewGroup);
+		viewGroup.setNextHandler(view);
+		TouchEvent event=new TouchEvent(10,10);
+		activity.handle(event);
+	}
 }
