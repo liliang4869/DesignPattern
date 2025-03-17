@@ -13,6 +13,7 @@ public class HumanDirector {
 		builder.buildSex();
 		builder.buildSkinColor();
 		builder.buildName(name);
+		System.out.println("build a human named " +name);
 		return builder.getHuman();
 	}
 }

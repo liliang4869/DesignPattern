@@ -15,6 +15,8 @@ import com.lil4869.designpattern.entity.sitthing.SitThing;
 import com.lil4869.designpattern.facade.SchoolClass;
 import com.lil4869.designpattern.factory.SingleBedBenchFactory;
 import com.lil4869.designpattern.flyweight.StudentFactory;
+import com.lil4869.designpattern.iterator.HumanCollection;
+import com.lil4869.designpattern.iterator.Iterator;
 import com.lil4869.designpattern.proxy.ProxyStudent;
 import com.lil4869.designpattern.singleton.PersonSingleton;
 import com.lil4869.designpattern.template.DayOfTeacher;
@@ -58,6 +60,9 @@ public class Demo {
 	
 	//命令
 	bossCommand();
+	
+	//迭代器
+	humanIterator();
 	}
 	
 	//工厂模式
@@ -174,5 +179,22 @@ public class Demo {
 		boss.setCmd(hrCommand);
 		boss.startCommand();
 		boss.queryCommand();
+	}
+	
+	//迭代器
+	public static void humanIterator() {
+		System.out.print("\n***Iterator***\n");
+		HumanCollection hc=new HumanCollection();
+		hc.addHuman(generateHumanByBuilder("Liu"));
+		hc.addHuman(generateHumanByBuilder("Jiang"));
+		Iterator<Human> iterator=hc.getIterator();
+		while(iterator.hasNext()) {
+			System.out.print(iterator.next().getName()+"\n");
+		}
+		hc.addHuman(generateHumanByBuilder("Fan"));
+		while(iterator.hasNext()) {
+			System.out.print(iterator.next().getName()+"\n");
+		}
+		
 	}
 }
