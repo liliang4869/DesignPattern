@@ -171,7 +171,8 @@ public class Demo {
 		HR hr=new HR();
 		HRCommand hrCommand=new HRCommand(hr);
 		Boss boss=new Boss();
-		boss.startCommand(hrCommand);
-		boss.queryCommand(hrCommand);
+		boss.setCmd(hrCommand);
+		boss.startCommand();
+		boss.queryCommand();
 	}
 }
