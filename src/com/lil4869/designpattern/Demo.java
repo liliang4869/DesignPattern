@@ -17,6 +17,7 @@ import com.lil4869.designpattern.factory.SingleBedBenchFactory;
 import com.lil4869.designpattern.flyweight.StudentFactory;
 import com.lil4869.designpattern.proxy.ProxyStudent;
 import com.lil4869.designpattern.singleton.PersonSingleton;
+import com.lil4869.designpattern.template.DayOfTeacher;
 
 public class Demo {
 	public static void main(String[] args) {
@@ -40,10 +41,13 @@ public class Demo {
 	Student student=new Student();
 	facadeClassDemo(teacher,student);
 	//享元
-	flyweight();
+	flyweightPattern();
 	
 	//代理
-	proxy();
+	proxyPattern();
+	
+	//模板
+	templatePattern();
 	}
 	
 	//工厂模式
@@ -113,8 +117,8 @@ public class Demo {
 	}
 	
 	//享元
-	public static void flyweight() {
-		System.out.print("\n***Facade***\n");
+	public static void flyweightPattern() {
+		System.out.print("\n***Flyweight***\n");
 		StudentFactory sf=new StudentFactory();;
 		for(int i=0;i<10;i++) {
 			int intId=(int)(Math.random()*10);
@@ -124,10 +128,17 @@ public class Demo {
 	}
 	
 	//代理
-	public static void proxy() {
+	public static void proxyPattern() {
 		System.out.print("\n***Proxy***\n");
 		ProxyStudent ps=new ProxyStudent();
 		ps.printDesc();
+	}
+	
+	//模版
+	public static void templatePattern() {
+		System.out.print("\n***Template***\n");
+		DayOfTeacher dft=new DayOfTeacher();
+		dft.startADay();
 	}
 
 }
