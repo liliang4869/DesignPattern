@@ -19,6 +19,9 @@ import com.lil4869.designpattern.proxy.ProxyStudent;
 import com.lil4869.designpattern.singleton.PersonSingleton;
 import com.lil4869.designpattern.template.DayOfTeacher;
 import com.lil4869.designpattern.chainofresponsibility.*;
+import com.lil4869.designpattern.command.Boss;
+import com.lil4869.designpattern.command.HR;
+import com.lil4869.designpattern.command.HRCommand;
 
 public class Demo {
 	public static void main(String[] args) {
@@ -52,6 +55,9 @@ public class Demo {
 	
 	//责任链
 	touchChain();
+	
+	//命令
+	bossCommand();
 	}
 	
 	//工厂模式
@@ -145,6 +151,7 @@ public class Demo {
 		dft.startADay();
 	}
 
+	//责任链
 	public static void touchChain() {
 		System.out.print("\n***Chain of responsibility***\n");
 		TouchEventHandler activity=new Activity();
@@ -156,5 +163,15 @@ public class Demo {
 		viewGroup.setNextHandler(view);
 		TouchEvent event=new TouchEvent(10,10);
 		activity.handle(event);
+	}
+	
+	//命令
+	public static void bossCommand() {
+		System.out.print("\n***Command***\n");
+		HR hr=new HR();
+		HRCommand hrCommand=new HRCommand(hr);
+		Boss boss=new Boss();
+		boss.startCommand(hrCommand);
+		boss.queryCommand(hrCommand);
 	}
 }
