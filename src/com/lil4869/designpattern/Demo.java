@@ -14,6 +14,7 @@ import com.lil4869.designpattern.entity.creature.Human;
 import com.lil4869.designpattern.entity.sitthing.SitThing;
 import com.lil4869.designpattern.facade.SchoolClass;
 import com.lil4869.designpattern.factory.SingleBedBenchFactory;
+import com.lil4869.designpattern.flyweight.StudentFactory;
 import com.lil4869.designpattern.singleton.PersonSingleton;
 
 public class Demo {
@@ -37,10 +38,13 @@ public class Demo {
 	//外觀
 	Student student=new Student();
 	facadeClassDemo(teacher,student);
+	//享元
+	flyweight();
 	}
 	
 	//工厂模式
 	public static void testFactory() {
+		System.out.print("\n***Factory***\n");
 		SingleBedBenchFactory factory=new SingleBedBenchFactory();
 		Bed bed=factory.createBed();
 		SitThing ibSit=factory.createSitThing();
@@ -50,7 +54,7 @@ public class Demo {
 	
 	//建造者模式
 	public static Human generateHumanByBuilder(String name) {
-	System.out.print("***Builder***\n");
+	System.out.print("\n***Builder***\n");
 	BlackMaleBuilder bmb=new BlackMaleBuilder();
 	HumanDirector humanDirector=new HumanDirector(bmb);
 	Human person=humanDirector.buildTargetPerson(name);
@@ -60,14 +64,14 @@ public class Demo {
 	
 	//适配器模式
 	public static void testAdapter(Human person) {
-		System.out.print("***Adapter***\n");
+		System.out.print("\n***Adapter***\n");
 		HumanInfoAdapter adapter=new HumanInfoAdapter(person);
 		adapter.showComplete();
 	}
 	
 	//橋接
 	public static Teacher generateTeacherByBridge(Human human) {
-		System.out.print("***Bridge***\n");
+		System.out.print("\n***Bridge***\n");
 		Teacher teacher=new Teacher(human);
 		teacher.setSalary(20000);
 		teacher.getHuman().printDesc();
@@ -76,6 +80,7 @@ public class Demo {
 	
 	//組合
 	public static void headmasterComposite() {
+		System.out.print("\n***Composite***\n");
 		Human humanTrump=generateHumanByBuilder("Teacher Trump");
 		Teacher teacherTrump=generateTeacherByBridge(humanTrump);
 		Human humanWang=generateHumanByBuilder("Teacher Wang");
@@ -90,16 +95,28 @@ public class Demo {
 	
 	//裝飾模式
 	public static EnglishTeacher decorateEnglishTeacher(Teacher teacher) {
-		System.out.print("***Decorator***\n");
+		System.out.print("\n***Decorator***\n");
 		EnglishTeacher englishTeacher=new EnglishTeacher(teacher);
 		englishTeacher.printDesc();
 		return englishTeacher;
 	}
-	
+	//外观
 	public static void facadeClassDemo(Teacher teacher,Student student) {
+		System.out.print("\n***Facade***\n");
 		SchoolClass sc=new SchoolClass(teacher,student);
 		sc.startClass();
 		sc.finishClass();
+	}
+	
+	//享元
+	public static void flyweight() {
+		System.out.print("\n***Facade***\n");
+		StudentFactory sf=new StudentFactory();;
+		for(int i=0;i<10;i++) {
+			int intId=(int)(Math.random()*10);
+			Student stu=sf.getStudent(String.valueOf(intId));
+			System.out.printf("get student %s from flyweight factory\n",stu.getId());
+		}
 	}
 
 }
