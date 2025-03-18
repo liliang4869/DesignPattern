@@ -31,6 +31,9 @@ import com.lil4869.designpattern.strategy.Computer;
 import com.lil4869.designpattern.strategy.ListenMusic;
 import com.lil4869.designpattern.strategy.WatchMovie;
 import com.lil4869.designpattern.template.DayOfTeacher;
+import com.lil4869.designpattern.visitor.Bank;
+import com.lil4869.designpattern.visitor.Park;
+import com.lil4869.designpattern.visitor.VisitorImpl;
 import com.lil4869.designpattern.chainofresponsibility.*;
 import com.lil4869.designpattern.command.Boss;
 import com.lil4869.designpattern.command.HR;
@@ -89,6 +92,9 @@ public class Demo {
 	
 	//策略
 	computerStrategy();
+	
+	//访问者
+	visitor();
 	}
 	
 	//工厂模式
@@ -282,5 +288,14 @@ public class Demo {
 		computer.useComputer();
 		computer.setUsage(new WatchMovie());
 		computer.useComputer();
+	}
+	
+	public static void visitor() {
+		System.out.print("\n***Visitor***\n");
+		VisitorImpl visitorImpl=new VisitorImpl();
+		Bank bank=new Bank(9999);
+		Park park=new Park();
+		visitorImpl.visit(bank);
+		visitorImpl.visit(park);
 	}
 }
