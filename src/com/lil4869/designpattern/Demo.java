@@ -19,6 +19,8 @@ import com.lil4869.designpattern.iterator.HumanCollection;
 import com.lil4869.designpattern.iterator.Iterator;
 import com.lil4869.designpattern.mediator.ConcreteMediator;
 import com.lil4869.designpattern.mediator.User;
+import com.lil4869.designpattern.memento.MementoKeeper;
+import com.lil4869.designpattern.memento.Originator;
 import com.lil4869.designpattern.proxy.ProxyStudent;
 import com.lil4869.designpattern.singleton.PersonSingleton;
 import com.lil4869.designpattern.template.DayOfTeacher;
@@ -68,6 +70,9 @@ public class Demo {
 	
 	//中介者
 	userMediator();
+	
+	//备忘录
+	memento();
 	}
 	
 	//工厂模式
@@ -215,5 +220,15 @@ public class Demo {
 		userLi.sendMessage("How r u.", "Yang");
 		
 		
+	}
+	
+	//备忘录
+	public static void memento() {
+		System.out.print("\n***Memento***\n");
+		Originator ori=new Originator("message 1");
+		MementoKeeper mk=new MementoKeeper();
+		mk.setMemento(ori.createMemento());
+		ori.setMessage("message 2");
+		ori.restore(mk.getMemento());
 	}
 }
