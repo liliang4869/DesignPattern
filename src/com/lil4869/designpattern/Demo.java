@@ -21,6 +21,9 @@ import com.lil4869.designpattern.mediator.ConcreteMediator;
 import com.lil4869.designpattern.mediator.User;
 import com.lil4869.designpattern.memento.MementoKeeper;
 import com.lil4869.designpattern.memento.Originator;
+import com.lil4869.designpattern.observer.ChineseStateObserver;
+import com.lil4869.designpattern.observer.PrintObserver;
+import com.lil4869.designpattern.observer.StateSubject;
 import com.lil4869.designpattern.proxy.ProxyStudent;
 import com.lil4869.designpattern.singleton.PersonSingleton;
 import com.lil4869.designpattern.template.DayOfTeacher;
@@ -73,6 +76,9 @@ public class Demo {
 	
 	//备忘录
 	memento();
+	
+	//观察者
+	observe();
 	}
 	
 	//工厂模式
@@ -230,5 +236,21 @@ public class Demo {
 		mk.setMemento(ori.createMemento());
 		ori.setMessage("message 2");
 		ori.restore(mk.getMemento());
+	}
+	
+	//观察者
+	private static void observe() {
+		System.out.print("\n***observer***\n");
+		PrintObserver pobs=new PrintObserver();
+		ChineseStateObserver cobs=new ChineseStateObserver();
+		StateSubject ssbj=new StateSubject();
+		ssbj.addObserver(pobs);
+		ssbj.addObserver(cobs);
+		ssbj.setStateMsg("creating");
+		ssbj.setStateMsg("running");
+		ssbj.setStateMsg("stop");
+		ssbj.removeObserver(pobs);
+		ssbj.setStateMsg("creating");
+		
 	}
 }
