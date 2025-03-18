@@ -26,6 +26,7 @@ import com.lil4869.designpattern.observer.PrintObserver;
 import com.lil4869.designpattern.observer.StateSubject;
 import com.lil4869.designpattern.proxy.ProxyStudent;
 import com.lil4869.designpattern.singleton.PersonSingleton;
+import com.lil4869.designpattern.state.Condition;
 import com.lil4869.designpattern.template.DayOfTeacher;
 import com.lil4869.designpattern.chainofresponsibility.*;
 import com.lil4869.designpattern.command.Boss;
@@ -79,6 +80,9 @@ public class Demo {
 	
 	//观察者
 	observe();
+	
+	//状态
+	statePattern();
 	}
 	
 	//工厂模式
@@ -240,7 +244,7 @@ public class Demo {
 	
 	//观察者
 	private static void observe() {
-		System.out.print("\n***observer***\n");
+		System.out.print("\n***Observer***\n");
 		PrintObserver pobs=new PrintObserver();
 		ChineseStateObserver cobs=new ChineseStateObserver();
 		StateSubject ssbj=new StateSubject();
@@ -252,5 +256,17 @@ public class Demo {
 		ssbj.removeObserver(pobs);
 		ssbj.setStateMsg("creating");
 		
+	}
+	
+	private static void statePattern() {
+		System.out.print("\n***State***\n");
+		Condition condition=new Condition();
+		condition.adjustTemp(10);
+		condition.turnOff();
+		condition.turnOn();
+		condition.adjustTemp(25);
+		condition.changeMode(2);
+		condition.changeMode(6);
+		condition.turnOff();
 	}
 }
