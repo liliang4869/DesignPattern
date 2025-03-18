@@ -27,6 +27,9 @@ import com.lil4869.designpattern.observer.StateSubject;
 import com.lil4869.designpattern.proxy.ProxyStudent;
 import com.lil4869.designpattern.singleton.PersonSingleton;
 import com.lil4869.designpattern.state.Condition;
+import com.lil4869.designpattern.strategy.Computer;
+import com.lil4869.designpattern.strategy.ListenMusic;
+import com.lil4869.designpattern.strategy.WatchMovie;
 import com.lil4869.designpattern.template.DayOfTeacher;
 import com.lil4869.designpattern.chainofresponsibility.*;
 import com.lil4869.designpattern.command.Boss;
@@ -83,6 +86,9 @@ public class Demo {
 	
 	//状态
 	statePattern();
+	
+	//策略
+	computerStrategy();
 	}
 	
 	//工厂模式
@@ -268,5 +274,13 @@ public class Demo {
 		condition.changeMode(2);
 		condition.changeMode(6);
 		condition.turnOff();
+	}
+	
+	public static void computerStrategy() {
+		System.out.print("\n***Strategy***\n");
+		Computer computer =new Computer(new ListenMusic());
+		computer.useComputer();
+		computer.setUsage(new WatchMovie());
+		computer.useComputer();
 	}
 }
