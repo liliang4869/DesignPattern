@@ -13,7 +13,7 @@ public class ChineseStateObserver implements Observer{
 		case "running":stateInChinese="运行中";break;
 		case "pause":stateInChinese="暂停";break;
 		case "stop":stateInChinese="停止";break;
-		case "creating":stateInChinese="穿件中";break;
+		case "creating":stateInChinese="创建中";break;
 		default:stateInChinese="未知";
 		}
 		System.out.printf("UpdateStateObserver state in chinese [%s]\n",stateInChinese);
