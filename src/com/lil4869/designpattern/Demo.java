@@ -17,6 +17,8 @@ import com.lil4869.designpattern.factory.SingleBedBenchFactory;
 import com.lil4869.designpattern.flyweight.StudentFactory;
 import com.lil4869.designpattern.iterator.HumanCollection;
 import com.lil4869.designpattern.iterator.Iterator;
+import com.lil4869.designpattern.mediator.ConcreteMediator;
+import com.lil4869.designpattern.mediator.User;
 import com.lil4869.designpattern.proxy.ProxyStudent;
 import com.lil4869.designpattern.singleton.PersonSingleton;
 import com.lil4869.designpattern.template.DayOfTeacher;
@@ -63,6 +65,9 @@ public class Demo {
 	
 	//迭代器
 	humanIterator();
+	
+	//中介者
+	userMediator();
 	}
 	
 	//工厂模式
@@ -195,6 +200,20 @@ public class Demo {
 		while(iterator.hasNext()) {
 			System.out.print(iterator.next().getName()+"\n");
 		}
+		
+	}
+	//中介者
+	public static void userMediator() {
+		System.out.print("\n***Mediator***\n");
+		ConcreteMediator mediator=new ConcreteMediator();
+		User userLi=new User("Li");
+		User userWang=new User("Wang");
+		mediator.register(userLi);
+		mediator.register(userWang);
+		userLi.sendMessage("Hello", "Wang");
+		userWang.sendMessage("Hello,too","Li");
+		userLi.sendMessage("How r u.", "Yang");
+		
 		
 	}
 }
