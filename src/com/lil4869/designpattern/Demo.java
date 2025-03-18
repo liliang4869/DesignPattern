@@ -295,7 +295,7 @@ public class Demo {
 		VisitorImpl visitorImpl=new VisitorImpl();
 		Bank bank=new Bank(9999);
 		Park park=new Park();
-		visitorImpl.visit(bank);
-		visitorImpl.visit(park);
+		bank.accept(visitorImpl);
+		park.accept(visitorImpl);
 	}
 }
